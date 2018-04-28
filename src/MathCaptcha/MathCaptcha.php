@@ -80,6 +80,19 @@ class MathCaptcha {
 		return ($base64_encode ? base64_encode($captcha) : $captcha);
 
 	}
+
+
+    /**
+     * Returns HTML img tag with base64 encoded content of image as source
+     *
+     * @param string $alt
+     * @return string
+     */
+    public function outputHtmlImg($alt = null, $title = null) {
+
+        return '<img src="data:image/png;base64,'. $this->outputString(true) .'"'. ($alt ? ' alt="'.$alt.'"' : '') . ($title ? ' title="'.$title.'"' : '') . '>';
+
+    }
 	
 	public function check ( $answer ) {
 		
