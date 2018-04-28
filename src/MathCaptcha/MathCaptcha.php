@@ -63,6 +63,24 @@ class MathCaptcha {
 		imagedestroy($this->captchaImg);
 	}
 	
+
+	/**
+	 * Returns image as plain or base64 encoded string
+	 *
+	 * @param boolean $base64_encode
+	 * @return string
+	 */
+	public function outputString($base64_encode = false) {
+		
+		ob_start();
+		imagepng($this->captchaImg);
+		$captcha = ob_get_contents();
+		ob_end_clean();
+
+		return ($base64_encode ? base64_encode($captcha) : $captcha);
+
+	}
+	
 	public function check ( $answer ) {
 		
 		// Check if math captcha has been generated
